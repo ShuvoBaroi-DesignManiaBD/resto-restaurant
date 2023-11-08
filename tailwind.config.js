@@ -8,6 +8,10 @@ module.exports = withMT({
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    fontFamily: {
+      'jost': ['jost', 'inter'],
+      'cormorant': ['"cormorant-garamond"', 'serif'] // Ensure fonts with spaces have " " surrounding it.
+    },
     extend: {
       colors: {
         'primary': '#C09542',
