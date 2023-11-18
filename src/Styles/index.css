@@ -5,45 +5,56 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Jost:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500;1,600;1,700&display=swap');
 
 @layer base {
-    /* * {
-        font-family: "Inter", Sans-serif;
+
+    * {
+        font-family: "Jost", "cormorant-garamond";
         box-sizing: border-box
-      } */ 
-    *{
-        @apply font-jost
       }
+    
 }
 
 @layer components {
     .primaryBtn {
-        @apply text-base text-white border-2 border-primary bg-primary hover:bg-secondary font-medium rounded-md px-6 py-2.5 
+        @apply text-base text-white border-2 border-primary bg-primary hover:bg-secondary font-medium rounded-md px-6 py-2.5
     }
 
     .secondaryBtn {
-        @apply  text-base text-headingColor bg-transparent font-medium rounded-md px-6 py-2.5  border-2 border-gray-300 hover:bg-primary hover:border-primary hover:text-white
+        @apply text-base text-headingColor bg-transparent font-medium rounded-md px-6 py-2.5 border-2 border-gray-300 hover:bg-primary hover:border-primary hover:text-white
     }
 
     .primaryHeading {
-        @apply text-[40px] font-bold;
+        @apply font-cormorant text-[40px] font-bold;
     }
 
     .secondaryHeading {
-        @apply text-[24px] font-semibold;
-    }    
+        @apply font-cormorant text-[28px] font-semibold;
+    }
+
     .textLg {
         @apply text-[20px] font-semibold;
     }
+
     .text {
         @apply text-[16px] text-[#0b0b0bb3];
     }
 
-    .or-divider:after, .or-divider:before {
-  @apply content-["_"] inline-block align-middle w-[45%]  border-t-[#ccc] border-t border-solid;
-}
-.awssld__content {
-    border-radius: 12px !important;
-}
-/* Header Styles */
+    .or-divider:after,
+    .or-divider:before {
+        @apply content-["_"] inline-block align-middle w-[45%] border-t-[#ccc] border-t border-solid;
+    }
+
+    .awssld__content {
+        border-radius: 12px !important;
+    }
+
+    .banner-section1 {
+        background: linear-gradient(98.3deg,rgba(111,73,2,.2) .45%,transparent 162.03%),linear-gradient(269.66deg,#000203 .28%,#09161d 99.7%);
+        position: relative;
+    }
+
+    .headerGradient {
+        background: linear-gradient(98.3deg,rgba(111,73,2,.2) .45%,transparent 162.03%),linear-gradient(269.66deg,#000203 .28%,#09161d 99.7%);
+    }
+    /* Header Styles */
 
 }
-
