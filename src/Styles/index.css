@@ -35,7 +35,7 @@
     }
 
     .text {
-        @apply text-[16px] text-[#0b0b0bb3];
+        @apply text-[18px] text-[#0b0b0bb3];
     }
 
     .or-divider:after,
@@ -47,14 +47,47 @@
         border-radius: 12px !important;
     }
 
-    .banner-section1 {
-        background: linear-gradient(98.3deg,rgba(111,73,2,.2) .45%,transparent 162.03%),linear-gradient(269.66deg,#000203 .28%,#09161d 99.7%);
-        position: relative;
-    }
-
     .headerGradient {
         background: linear-gradient(98.3deg,rgba(111,73,2,.2) .45%,transparent 162.03%),linear-gradient(269.66deg,#000203 .28%,#09161d 99.7%);
     }
     /* Header Styles */
 
+    /* Banner styles */
+    .banner-section1 {
+        background: linear-gradient(98.3deg,rgba(111,73,2,.2) .45%,transparent 162.03%),linear-gradient(269.66deg,#000203 .28%,#09161d 99.7%);
+        position: relative;
+    }
+
+    .swiper-button-prev,.swiper-button-next {
+        background-color: #BF9444;
+        width: 40px !important;
+        height: 40px !important;
+        border-radius: 100%;
+        color: #fff;
+    }
+
+    .swiper-button-prev:after, .swiper-button-next:after {
+        font-size: 20px !important;
+        color: #fff;
+        padding: 12px !important;
+        font-weight: 600;
+
+    }
+    /* @keyframes spin {
+        0% {
+          right: 0;
+        }
+        100% {
+          right: 60s;
+        }
+      }
+      
+      .animate-running {
+        animation: running 60s linear infinite;
+      }
+
+      .animate-running {
+        animation: CSSright 60s linear infinite running !important;
+      } */
+      
 }

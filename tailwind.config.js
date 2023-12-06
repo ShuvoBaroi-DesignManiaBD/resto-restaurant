@@ -18,6 +18,9 @@ module.exports = withMT({
       backgroundImage: {
         'footer-bg': "url('https://i.ibb.co/MVGhDbg/testi-video-bg.webp')",
       },
+      animation: {
+        'spin-slow': 'spin 18s linear infinite',
+      },
       colors: {
         'primary': '#C09542',
         'primaryLight': '#FAF7F0',

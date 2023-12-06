@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom";
-import { useAuth } from "../../Hooks/useAuth";
+import { useAuth } from "../../../Hooks/useAuth";
 import { FiLogOut } from "react-icons/fi";
-import { FaPlus } from "react-icons/fa";
 
 const MobileNavigation = () => {
     const { user, logout } = useAuth();
@@ -20,12 +19,7 @@ const MobileNavigation = () => {
             <NavLink to="/" className={activeStatus}>
                 Home
             </NavLink>
-            <NavLink to="/foods" className={activeStatus}>
-                All foods
-            </NavLink>
-            <NavLink to="/my-cart" className={activeStatus}>
-                My cart
-            </NavLink>
+            
             {user ?
                 <>
                     <NavLink to="/login" className="primaryBtn text text-white font-medium p-2 px-4 flex items-center gap-3" onClick={logout}>

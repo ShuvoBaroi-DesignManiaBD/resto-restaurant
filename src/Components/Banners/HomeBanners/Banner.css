@@ -1,0 +1,16 @@
+/* @keyframes running {
+    0% {
+      right: 0;
+    }
+    100% {
+      right: 60s;
+    }
+  }
+  
+  .animate-running {
+    animation: running 60s linear infinite;
+  } */
+
+  .animate-running {
+    animation: CSSright 60s linear infinite running !important;
+  }

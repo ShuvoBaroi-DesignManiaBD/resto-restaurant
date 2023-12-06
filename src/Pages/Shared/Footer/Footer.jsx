@@ -15,6 +15,7 @@ const Footer = () => {
                                     <ul className="text font-normal text-offWhite space-y-4">
                                         <li>
                                             <a href="/menu1">Indian Menu</a>
+                                            
                                         </li>
                                         <li>
                                             <a href="/menu1">Menu Item</a>
