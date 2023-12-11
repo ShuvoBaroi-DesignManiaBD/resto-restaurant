@@ -15,10 +15,9 @@ import { AuthProvider } from './Contexts/AuthContext';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
-    <RouterProvider router={Routes}>
-        <MainRoute></MainRoute>
-        <Toaster />
+      <RouterProvider router={Routes}>
       </RouterProvider>
+      <Toaster/>
     </AuthProvider>
   </React.StrictMode>,
 )
