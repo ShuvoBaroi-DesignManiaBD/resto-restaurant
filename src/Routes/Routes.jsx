@@ -26,6 +26,10 @@ const Routes = createBrowserRouter([
           path: 'all-food-items',
           element: <AllFoods></AllFoods>,
         },
+        {
+          path: '/add-food',
+          element: <AddFood></AddFood>,
+        },
       ],
     },
     {
@@ -35,10 +39,6 @@ const Routes = createBrowserRouter([
     {
       path: '/register',
       element: <Register></Register>,
-    },
-    {
-      path: '/add-food',
-      element: <AddFood></AddFood>,
     },
   ]);
 
