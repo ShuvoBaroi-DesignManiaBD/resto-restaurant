@@ -6,7 +6,12 @@ import AllFoods from "../Pages/AllFoods";
 import Blog from "../Pages/Blog";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
-import AddFood from "../Pages/AddFood";
+import AddFood from "../Pages/User/AddFood";
+import UserRoute from "./UserRoute";
+import MyAddedFoods from "../Pages/User/MyAddedFoods";
+import Profile from "../Pages/User/Profile";
+import FoodDetail from "../Pages/FoodDetail";
+import Order from "../Pages/Order";
 
 const Routes = createBrowserRouter([
     {
@@ -23,11 +28,34 @@ const Routes = createBrowserRouter([
           element: <Blog></Blog>,
         },
         {
-          path: 'all-food-items',
+          path: 'foods',
           element: <AllFoods></AllFoods>,
         },
         {
-          path: '/add-food',
+          path: 'foods/:name',
+          element: <FoodDetail></FoodDetail>,
+        },
+      ],
+    },
+    {
+      path: '/user',
+      element: <UserRoute></UserRoute>,
+      errorElement: <ErrorPage></ErrorPage>,
+      children: [
+        {
+          path: 'profile',
+          element: <Profile></Profile>
+        },
+        {
+          path: 'added-foods',
+          element: <MyAddedFoods></MyAddedFoods>
+        },
+        {
+          path: 'ordered-foods',
+          element: <MyAddedFoods></MyAddedFoods>
+        },
+        {
+          path: 'add-food',
           element: <AddFood></AddFood>,
         },
       ],
@@ -40,6 +68,12 @@ const Routes = createBrowserRouter([
       path: '/register',
       element: <Register></Register>,
     },
+    {
+      path: '/order',
+      element: <Order></Order>,
+    },
+    
+    
   ]);
 
 export default Routes;

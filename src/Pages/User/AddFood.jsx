@@ -1,7 +1,7 @@
 
-import HeroInnerPages from "../Components/Hero/HeroInnerPages";
-import { useAuth } from "../Hooks/useAuth";
-import { addFood } from "../APIs/foods";
+import HeroInnerPages from "../../Components/Hero/HeroInnerPages";
+import { useAuth } from "../../Hooks/useAuth";
+import { addFood } from "../../APIs/foods";
 import toast from "react-hot-toast";
 
 const AddFood = () => {

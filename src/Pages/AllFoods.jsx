@@ -1,31 +1,48 @@
 import { Spinner } from "@material-tailwind/react";
 import HeroInnerPages from "../Components/Hero/HeroInnerPages";
 import { useState } from "react";
-import { getAllFoods } from "../APIs/foods";
+import { getAllFoods, searchFoods } from "../APIs/foods";
 import { useQuery } from "@tanstack/react-query";
 import FoodCard from "../Components/Cards/foodCard";
 
 const AllFoods = () => {
     const [page, setPage] = useState(0);
+    const [text, setText] = useState('');
 
-    const { data: { allFoods, foodsCount } } = useQuery({
-        queryKey: ['foods', page],
+    const { isFetching, data: { foods, foodsCount } } = useQuery({
+        queryKey: ['foods', page, text],
         queryFn: async () => {
-            const res = await getAllFoods(page)
+            const res = await (text == '' ? getAllFoods(page) : searchFoods(text, page));
+            console.log(res);
             const data = await res.data;
             console.log(data);
             return data;
         },
-        initialData: { allFoods: [], foodsCount: 0 }
+        initialData: { foods: [], foodsCount: 0 }
     });
 
     // Pagination 
     const totalPages = Math.ceil(foodsCount / 2);
     const pages = [... new Array(totalPages).fill(0)];
     console.log(page, pages, pages.length);
-    console.log(allFoods);
+    console.log(foods);
 
+    console.log(text);
     
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const text = form?.searchBox?.value;
+        setText(text)
+
+        // addFood(data)
+        //     .then(food => {
+        //         toast.success('food added successfully!')
+        //         form.reset();
+        //     })
+        //     .catch(error => console.log(error))
+    }
+
     return (
         <>
             <div className="bg-blue-gray-50">
@@ -33,35 +50,36 @@ const AllFoods = () => {
                 <div className="relative overflow-hidden">
                     <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-24">
                         <div className="text-center">
-                            <h1 className="text-4xl sm:text-6xl font-bold text-gray-800 dark:text-gray-200">
-                                Insights
+                            <h1 className="secondaryHeading text-xl sm:text-4xl font-bold text-gray-800 dark:text-gray-200">
+                            Find Your Favorite Foods
                             </h1>
-                            <p className="mt-3 text-gray-600 dark:text-gray-400">
+                            {/* <p className="mt-3 text-gray-600 dark:text-gray-400">
                                 Stay in the know with insights from industry experts.
-                            </p>
+                            </p> */}
                             <div className="mt-7 sm:mt-12 mx-auto max-w-xl relative">
                                 {/* Form */}
-                                <form>
+                                <form onSubmit={handleSubmit}>
                                     <div className="relative z-10 flex space-x-3 p-3 bg-white border rounded-lg shadow-lg shadow-gray-100 dark:bg-slate-900 dark:border-gray-700 dark:shadow-gray-900/[.2]">
                                         <div className="flex-[1_0_0%]">
                                             <label
-                                                htmlFor="hs-search-article-1"
+                                                htmlFor="searchBox"
                                                 className="block text-sm text-gray-700 font-medium dark:text-white"
                                             >
-                                                <span className="sr-only">Search article</span>
+                                                <span className="sr-only">Type the food name</span>
                                             </label>
                                             <input
-                                                type="email"
-                                                name="hs-search-article-1"
-                                                id="hs-search-article-1"
-                                                className="py-2.5 px-4 block w-full border-transparent rounded-lg focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-transparent dark:text-gray-400 dark:focus:ring-gray-600"
-                                                placeholder="Search article"
+                                                type="text"
+                                                name="searchBox"
+                                                id="search"
+                                                className="py-2.5 px-4 block w-full border-transparent rounded-lg focus:border-primary focus:ring-secondary dark:bg-slate-900 dark:border-transparent dark:text-gray-400 dark:focus:ring-gray-600"
+                                                placeholder="Type the food name"
+                                                onChange={(e)=>setText(e.target.value) && setPage(0)}
                                             />
                                         </div>
                                         <div className="flex-[0_0_auto]">
-                                            <a
-                                                className="w-[46px] h-[46px] inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                                                href="#"
+                                            <button
+                                                className="w-[46px] h-[46px] inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-primary text-white hover:bg-secondary disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                                                type="submit"
                                             >
                                                 <svg
                                                     xmlns="http://www.w3.org/2000/svg"
@@ -72,7 +90,7 @@ const AllFoods = () => {
                                                 >
                                                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
                                                 </svg>
-                                            </a>
+                                            </button>
                                         </div>
                                     </div>
                                 </form>
@@ -128,7 +146,7 @@ const AllFoods = () => {
                                 </div>
                                 {/* End SVG Element */}
                             </div>
-                            <div className="mt-10 sm:mt-20">
+                            {/* <div className="mt-10 sm:mt-20">
                                 <a
                                     className="m-1 py-3 px-4 inline-flex items-center gap-x-2 text-sm rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                                     href="#"
@@ -230,7 +248,7 @@ const AllFoods = () => {
                                     </svg>
                                     Adventure
                                 </a>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>
@@ -242,14 +260,14 @@ const AllFoods = () => {
             <section className='container mx-auto pt-10 lg:pt-[20px] pb-20 text-center'>
                 {/* <h2 className='primaryHeading'>Foods</h2> */}
                 <div className='gap-10 grid md:grid-cols-2 lg:grid-cols-4 px-4 lg:px-0 py-10'>
-                    {allFoods ? (
-                        allFoods.length === 0 ? (
+                    {foods.length !== 0 ? (
+                        isFetching ? (
                             <Spinner color="blue" className="h-8 w-8 col-span-4 mx-auto" />
                         ) : (
-                            allFoods.map((food) => (
+                            foods.map((food) => (
                                 <FoodCard
                                     key={food._id}
-                                    foods={allFoods}
+                                    
                                     foodData={food}
                                 ></FoodCard>
                             ))
@@ -286,11 +304,11 @@ const AllFoods = () => {
                         </button>
                         {pages?.map((item, index) => (
                             <button key={index}
-                            className={`py-2 px-3 text-sm font-medium rounded-lg border border-gray-200 text-text shadow-sm hover:bg-gray-50 ${(page == index ) ? 'bg-primary text-white hover:bg-primary' : ''}`}
-                            onClick={() => setPage(index)}
-                        >
-                            {index + 1}
-                        </button>
+                                className={`py-2 px-3 text-sm font-medium rounded-lg border border-gray-200 text-text shadow-sm hover:bg-gray-50 ${(page == index) ? 'bg-primary text-white hover:bg-primary' : ''}`}
+                                onClick={() => setPage(index)}
+                            >
+                                {index + 1}
+                            </button>
                         ))}
                         <button
                             type="button"

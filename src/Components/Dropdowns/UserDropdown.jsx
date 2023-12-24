@@ -1,3 +1,9 @@
+import { BiPlusCircle } from "react-icons/bi"; 
+import { BsFillPlusCircleFill } from "react-icons/bs"; 
+import { MdOutlineFastfood } from "react-icons/md"; 
+
+import { MdOutlineFoodBank } from "react-icons/md"; 
+import { MdFastfood } from "react-icons/md"; 
 import { CgProfile } from "react-icons/cg"; 
 import { FiLogOut } from "react-icons/fi"; 
 import { useState } from "react";
@@ -51,10 +57,29 @@ const UserDropdown = () => {
           </span>
           <Link
             className="flex items-center gap-x-2.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:bg-gray-700"
-            to="/profile"
+            to="user/profile"
           >
-            <CgProfile /> My Profile
+            <CgProfile  size="18" /> My Profile
           </Link>
+          <Link
+            className="flex items-center gap-x-2.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:bg-gray-700"
+            to="user/add-food"
+          >
+            <BiPlusCircle size="20"/> Add new food
+          </Link>
+          <Link
+            className="flex items-center gap-x-2.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:bg-gray-700"
+            to="user/added-foods"
+          >
+            <MdOutlineFoodBank size="22" /> My added foods
+          </Link>
+          <Link
+            className="flex items-center gap-x-2.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:bg-gray-700"
+            to="user/ordered-foods"
+          >
+            <MdOutlineFastfood /> My ordered foods
+          </Link>
+          
           <Link
             className="flex items-center gap-x-2.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:bg-gray-700"
             to="/login" onClick={logout}

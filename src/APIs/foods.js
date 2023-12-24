@@ -10,3 +10,9 @@ export const getAllFoods = async (page) => {
     const data = await axiosSecure.get(`/all-foods?page=${page}`);
     return data
 }
+
+export const searchFoods = async (keyword, page) => {
+    console.log(page);
+    const data = await axiosSecure.get(`/search?keyword=${keyword}&page=${page}`);
+    return data
+}
