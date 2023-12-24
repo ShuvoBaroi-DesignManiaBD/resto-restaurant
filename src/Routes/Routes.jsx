@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import MainRoute from "../Layouts/MainRoute";
+import MainRoute from "./MainRoute";
 import ErrorPage from "../Pages/NotFound";
 import Home from "../Pages/Home";
 import AllFoods from "../Pages/AllFoods";
@@ -12,6 +12,7 @@ import MyAddedFoods from "../Pages/User/MyAddedFoods";
 import Profile from "../Pages/User/Profile";
 import FoodDetail from "../Pages/FoodDetail";
 import Order from "../Pages/Order";
+import PrivateRoute from "./PrivateRoute";
 
 const Routes = createBrowserRouter([
     {
@@ -69,10 +70,9 @@ const Routes = createBrowserRouter([
       element: <Register></Register>,
     },
     {
-      path: '/order',
-      element: <Order></Order>,
+      path: 'order',
+      element:<PrivateRoute><Order></Order></PrivateRoute>,
     },
-    
     
   ]);
 

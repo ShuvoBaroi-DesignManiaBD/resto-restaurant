@@ -2,7 +2,6 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { RouterProvider } from 'react-router-dom';
 import Routes from './Routes/Routes';
-import MainRoute from './Layouts/MainRoute';
 import { Toaster } from 'react-hot-toast';
 import './Styles/index.css'
 import 'swiper/css';

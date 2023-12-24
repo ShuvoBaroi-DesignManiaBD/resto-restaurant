@@ -1,19 +1,25 @@
 import { MdAddShoppingCart } from "react-icons/md"; 
 import { BsCartPlus } from "react-icons/bs"; 
 import { AiOutlineDoubleRight } from "react-icons/ai";
-import { NavLink, useLoaderData, useLocation } from "react-router-dom";
+import { NavLink, Navigate, useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import ReactStarsRating from 'react-awesome-stars-rating'
 import HeroInnerPages from "../Components/Hero/HeroInnerPages";
 import { useAuth } from "../Hooks/useAuth";
 import { ToastContainer, toast } from "react-toastify";
+import { saveToCart } from "../Hooks/localStorage";
 
-const ProductDetails = () => {
+const FoodDetails = () => {
     // const currentBrand = location?.state;
     const location = useLocation();
     const food = location.state;
     const { user } = useAuth();
+    const navigate = useNavigate();
     console.log(food);
 
+    const addToCart = async () => {
+        saveToCart(food)
+        navigate('/order');
+    }
     return (
         <>
             <div className="bg-[url(https://i.ibb.co/3fNMsff/inner-pages-hero.webp)] relative w-full h-[500px] bg-cover primaryHeading text-white flex justify-start items-center text-start">
@@ -47,7 +53,7 @@ const ProductDetails = () => {
                         <p className="primaryHeading mt-3">${food.price}</p>
                         <p className="textLg font-cormorant text-textColor">Category:  <span className="text-sm font-light text-headingColor rounded-sm">{food?.category}</span></p>
                         <p className="text mt-3">{food.short_description}</p>
-                        <NavLink className="primaryBtn py-1.5 w-full md:w-auto flex items-center gap-2" to="/order">Order this food <MdAddShoppingCart /></NavLink>
+                        <button className="primaryBtn py-1.5 w-full md:w-auto flex items-center gap-2" onClick={() => addToCart()} >Order this food <MdAddShoppingCart /></button>
                     </div>
                     <ToastContainer />
                 </div>
@@ -56,4 +62,4 @@ const ProductDetails = () => {
     )
 };
 
-export default ProductDetails;
+export default FoodDetails;

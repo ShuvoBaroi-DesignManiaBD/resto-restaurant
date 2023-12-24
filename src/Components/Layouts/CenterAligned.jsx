@@ -1,7 +1,7 @@
 
-const CenterAligned = ({children}) => {
+const CenterAligned = ({children}, {className}) => {
     return (
-        <div className='container mx-auto'>
+        <div className={`container mx-auto ${className}`}>
             {children}
         </div>
     );

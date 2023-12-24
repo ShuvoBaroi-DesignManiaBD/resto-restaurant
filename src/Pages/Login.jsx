@@ -1,21 +1,22 @@
 import { useState } from "react";
 import Logo from "../Components/Shared/Logo";
 import { useAuth } from "../Hooks/useAuth";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import SocialLogin from "../Components/Shared/AuthElements/SocialLogin";
 
 const Login = () => {
   const { signInWithEmail, user } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
-  const {pathname} = useLocation();
+  const { state } = useLocation();
+  console.log(state);
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
     await signInWithEmail(email, password);
-    navigate(pathname);
+    navigate(state);
   }
   const togglePass = () => {
     setShowPassword(!showPassword);
@@ -23,9 +24,13 @@ const Login = () => {
 
   {
     if (user) {
-      return navigate("/") || <p className='text-center textLg font-normal text-textColor col-span-4'>
-        You are logged in already!
-      </p>;
+      return state ? navigate(state || '/') :
+        <div className="min-h-screen flex items-center justify-center">
+          <p className='text-center text-2xl font-normal text-textColor col-span-4'>
+            You are logged in already!
+          </p>;
+        </div>
+
     } else {
       return (
         <main className="w-[100vw] h-[100vh] bg-[#291e0b] flex items-center justify-center mx-auto my-auto p-6">
@@ -37,7 +42,7 @@ const Login = () => {
                   Sign in
                 </h1>
                 <p className="mt-2 text-sm text-white dark:text-gray-400">
-                  Don't have an account yet? <span> </span>
+                  Don't have an account yet?
                   <Link
                     className="text-primary font-semibold decoration-2 hover:underline dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                     to="/register"
@@ -47,8 +52,8 @@ const Login = () => {
                 </p>
               </div>
               <div className="mt-5">
-              <SocialLogin></SocialLogin>
-                
+                <SocialLogin url={state}></SocialLogin>
+
                 <div className="py-3 flex items-center text-xs text-gray-400 uppercase before:flex-[1_1_0%] before:border-t before:border-gray-200 before:me-6 after:flex-[1_1_0%] after:border-t after:border-gray-200 after:ms-6 dark:text-gray-500 dark:before:border-gray-600 dark:after:border-gray-600">
                   Or
                 </div>
@@ -110,24 +115,24 @@ const Login = () => {
                     {/* End Form Group */}
                     {/* Checkbox */}
                     <div className="flex items-start">
-                                        <div className="flex items-center h-5">
-                                            <input
-                                                id="remember"
-                                                aria-describedby="remember"
-                                                type="checkbox"
-                                                className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 focus:ring-primary-600 ring-offset-gray-800"
-                                                required=""
-                                            />
-                                        </div>
-                                        <div className="ml-3 text-sm">
-                                            <label
-                                                htmlFor="remember"
-                                                className="text-sm font-medium text-white"
-                                            >
-                                                Remember me
-                                            </label>
-                                        </div>
-                                    </div>
+                      <div className="flex items-center h-5">
+                        <input
+                          id="remember"
+                          aria-describedby="remember"
+                          type="checkbox"
+                          className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 focus:ring-primary-600 ring-offset-gray-800"
+                          required=""
+                        />
+                      </div>
+                      <div className="ml-3 text-sm">
+                        <label
+                          htmlFor="remember"
+                          className="text-sm font-medium text-white"
+                        >
+                          Remember me
+                        </label>
+                      </div>
+                    </div>
                     {/* End Checkbox */}
                     <button
                       type="submit"
