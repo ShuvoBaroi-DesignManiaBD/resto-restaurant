@@ -5,6 +5,11 @@ export const addFood = async (food) => {
     return data
 }
 
+export const getFood = async (id) => {
+    const data = await axiosSecure.get(`/foods/${id}`);
+    return data
+}
+
 export const getAllFoods = async (page) => {
     console.log(page);
     const data = await axiosSecure.get(`/all-foods?page=${page}`);

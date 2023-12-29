@@ -33,7 +33,7 @@ const FoodCard = ({ foodData, hasDelete, hasUpdate }, ...props) => {
                         <span className="text-2xl font-bold text-gray-900 dark:text-white">
                             ${foodData?.price}
                         </span>
-                        <button className="text-primary font-bold px-3 text-base py-1 flex items-center gap-2" onClick={() => navigate(`/foods/${(foodData.name).toLowerCase().replace(/\s+/g, '-')}`, { state: foodData })}>View details <BsArrowRight size="20" /></button>
+                        <button className="text-primary font-bold px-3 text-base py-1 flex items-center gap-2" onClick={() => navigate(`/foods/${(foodData.name).toLowerCase().replace(/\s+/g, '-')}`, { state: foodData._id })}>View details <BsArrowRight size="20" /></button>
                     </div>
                     <div className="flex gap-5 ">
                         {hasUpdate && <button className="primaryBtn bg-textColor border-textColor hover:bg-primary hover:border-primary px-0 text-sm py-2 w-full"
