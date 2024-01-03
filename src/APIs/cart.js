@@ -12,3 +12,15 @@ export const getCartItems = async (id) => {
     return data
 }
 
+export const deleteUserCart = async (id) => {
+    console.log(id);
+    const data = await axiosSecure.delete(`/cart/user/delete?id=${id}`);
+    return data
+}
+
+export const deleteFromCart = async (id, foodid, quantity) => {
+    console.log(id);
+    const data = await axiosSecure.delete(`/cart/user/food/delete?userid=${id}&foodid=${foodid}&qty=${quantity}`);
+    return data
+}
+

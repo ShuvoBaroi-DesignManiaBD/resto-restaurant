@@ -4,9 +4,11 @@ import { useAuth } from "../Hooks/useAuth";
 import Login from "./Login";
 import CenterAligned from "../Components/Layouts/CenterAligned";
 import { useState } from "react";
-import { getCartItems } from "../APIs/cart";
+import { deleteFromCart, deleteUserCart, getCartItems } from "../APIs/cart";
 import { useQuery } from "@tanstack/react-query";
 import { Accordion, AccordionBody, AccordionHeader } from "@material-tailwind/react";
+import { addOrder } from "../APIs/orders";
+import toast from "react-hot-toast";
 
 const Order = () => {
     const food = getCartItems();
@@ -15,6 +17,8 @@ const Order = () => {
     const [cart, setCart] = useState(true);
     const [open, setOpen] = useState(0);
     const [selectedValue, setSelectedValue] = useState('bankTransfer');
+    const currentDate = new Date(Date.now());
+    const formattedDate = `${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}`;
 
     const handleRadioChange = (event) => {
         setSelectedValue(event.target.value);
@@ -37,8 +41,9 @@ const Order = () => {
     const navigate = useNavigate();
     console.log(data);
 
-    const removeFood = () => {
-        setCart(!cart);
+    const removeFood = async (foodId, quantity) => {
+        deleteFromCart(user.uid, foodId, quantity)
+        .then(()=>toast.success('Food removed from cart!') && refetch());
     }
 
     const handleSubmit = (e) => {
@@ -65,9 +70,14 @@ const Order = () => {
             country,
             payment,
             total,
+            orderDate:formattedDate,
             foods
         }
-        console.log(form, orderData);
+        console.log(orderData);
+        addOrder(orderData)
+        .then(()=>toast.success('Thanks for your order!') && form.reset());
+        navigate('/foods');
+        deleteUserCart(user.uid);
     }
 
     return (
@@ -76,6 +86,7 @@ const Order = () => {
                 <h2 className="primaryHeading text-center mb-10">
                     Secure order
                 </h2>
+                <p className="text text-headingColor font-medium py-5">Order date: <span className="text font-normal">{formattedDate}</span></p>
                 <form className="w-[100%] grid grid-cols-6 gap-5"
                     onSubmit={handleSubmit}
                 >
@@ -91,11 +102,11 @@ const Order = () => {
                                         <div className="col-span-9">
                                             <h5 className="text-sm font-medium">{item?.name}</h5>
                                             <p className="text-[12px]">Category: <span>{item?.category}</span></p>
-                                            <p className="text-[12px]">Items left: <span>{item?.quantity}</span></p>
+                                            {/* <p className="text-[12px]">Items left: <span>{item?.quantity}</span></p> */}
                                             <p className="text-[12px]">Qty: {item?.cartQuantity}</p>
                                         </div>
                                         <div className="h-full col-span-2 flex flex-col justify-between items-end">
-                                            <button onClick={() => removeFood()} className="cursor-pointer"><CgClose /></button>
+                                            <button onClick={() => removeFood(item?.foodId, item?.cartQuantity)} className="cursor-pointer"><CgClose /></button>
                                             <p className="text-sm font-medium">${item?.total} USD</p>
                                         </div>
                                     </div>

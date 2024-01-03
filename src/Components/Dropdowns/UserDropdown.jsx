@@ -57,7 +57,7 @@ const UserDropdown = () => {
           </span>
           <Link
             className="flex items-center gap-x-2.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:bg-gray-700"
-            to="user/profile"
+            to="/user/profile"
           >
             <CgProfile  size="18" /> My Profile
           </Link>
@@ -69,13 +69,13 @@ const UserDropdown = () => {
           </Link>
           <Link
             className="flex items-center gap-x-2.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:bg-gray-700"
-            to="user/added-foods"
+            to="/user/added-foods"
           >
             <MdOutlineFoodBank size="22" /> My added foods
           </Link>
           <Link
             className="flex items-center gap-x-2.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:bg-gray-700"
-            to="user/ordered-foods"
+            to="/user/my-orders"
           >
             <MdOutlineFastfood /> My ordered foods
           </Link>

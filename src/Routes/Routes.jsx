@@ -13,6 +13,7 @@ import Profile from "../Pages/User/Profile";
 import FoodDetail from "../Pages/FoodDetail";
 import Order from "../Pages/Order";
 import PrivateRoute from "./PrivateRoute";
+import MyOrder from "../Pages/MyOrder";
 
 const Routes = createBrowserRouter([
     {
@@ -52,8 +53,8 @@ const Routes = createBrowserRouter([
           element: <MyAddedFoods></MyAddedFoods>
         },
         {
-          path: 'ordered-foods',
-          element: <MyAddedFoods></MyAddedFoods>
+          path: 'my-orders',
+          element: <MyOrder></MyOrder>
         },
         {
           path: 'add-food',

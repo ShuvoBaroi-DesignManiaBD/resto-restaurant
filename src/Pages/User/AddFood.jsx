@@ -10,7 +10,7 @@ const AddFood = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
-    const userId = user?.uid;
+    const ownerId = user?.uid;
     const name = form.foodName.value;
     const image = form.image.value;
     const category = form.foodCategory.value;
@@ -22,7 +22,7 @@ const AddFood = () => {
     const description = form.description.value;
     const orderCount = 0;
 
-    const data = {userId, name, image, category, quantity, price, ownerName, ownerEmail, country, description, orderCount};
+    const data = {ownerId, name, image, category, quantity, price, ownerName, ownerEmail, country, description, orderCount};
     console.log(data);
     toast.success('food added successfully!')
 
