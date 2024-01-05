@@ -18,6 +18,7 @@ const Order = () => {
     const [open, setOpen] = useState(0);
     const [selectedValue, setSelectedValue] = useState('bankTransfer');
     const currentDate = new Date(Date.now());
+    const orderDate = Date.now();
     const formattedDate = `${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}`;
 
     const handleRadioChange = (event) => {
@@ -50,31 +51,44 @@ const Order = () => {
         e.preventDefault();
         const form = e.target;
         const userId = user.uid;
-        const name = user.displayName;
-        const email = user.email;
+        const userName = user.displayName;
+        const userEmail = user.email;
         const phone = form.phone.value;
         const address = form.address.value;
         const city = form.city.value;
         const country = form.country.value;
+        const addressInfo = {address, city, country};
         const payment = selectedValue;
         const foods = [];
+        const order = [];
         const total = data.reduce((acc, item) => acc + item.total, 0);
-        data.map(item => foods.push(item));
+        
+        // const orderData = {
+        //     userId,
+        //     name,
+        //     userEmail,
+        //     phone,
+        //     address,
+        //     city,
+        //     country,
+        //     payment,
+        //     total,
+        //     orderDate:formattedDate,
+        //     currentDate,
+        //     foods
+        // }
         const orderData = {
-            userId,
-            name,
-            email,
+            userName,
+            userEmail,
             phone,
-            address,
-            city,
-            country,
+            addressInfo,
             payment,
-            total,
-            orderDate:formattedDate,
-            foods
+            orderDate,
         }
-        console.log(orderData);
-        addOrder(orderData)
+        // data.map(item => foods.push(item));
+        data.map(item => order.push({...item, ...orderData}));
+        console.log(order);
+        addOrder(order)
         .then(()=>toast.success('Thanks for your order!') && form.reset());
         navigate('/foods');
         deleteUserCart(user.uid);

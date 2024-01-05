@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Logo from "../Components/Shared/Logo";
 import { useAuth } from "../Hooks/useAuth";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, NavLink, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import SocialLogin from "../Components/Shared/AuthElements/SocialLogin";
 
@@ -15,8 +15,7 @@ const Login = () => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    await signInWithEmail(email, password);
-    navigate(state);
+    await signInWithEmail(email, password)
   }
   const togglePass = () => {
     setShowPassword(!showPassword);
@@ -24,11 +23,12 @@ const Login = () => {
 
   {
     if (user) {
-      return state ? navigate(state || '/') :
-        <div className="min-h-screen flex items-center justify-center">
+      return state ? navigate(state || '/foods') :
+        <div className="min-h-screen flex flex-col items-center justify-center gap-10">
           <p className='text-center text-2xl font-normal text-textColor col-span-4'>
             You are logged in already!
-          </p>;
+          </p>
+          <NavLink to="/" className="primaryBtn py-1.5">Back to home</NavLink>
         </div>
 
     } else {

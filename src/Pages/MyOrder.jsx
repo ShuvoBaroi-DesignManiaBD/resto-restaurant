@@ -7,13 +7,14 @@ import { getOrders } from '../APIs/orders';
 import { useQuery } from '@tanstack/react-query';
 import { AiOutlineDoubleRight } from 'react-icons/ai';
 import { useAuth } from '../Hooks/useAuth';
+import LoadingSpinner from '../Components/Shared/LoadingSpinner';
 
 const MyOrder = () => {
-    const {user} = useAuth();
+    const { user } = useAuth();
     const [page, setPage] = useState(0);
     const labels = ['Thumbnail', 'Name', 'Category', 'Country', 'Added time', 'Price', 'Quantity', 'Total ($)', 'Actions']
-    
-    const { isFetching, refetch, data: { result:orders, countOrders } } = useQuery({
+
+    const { isFetching, refetch, data: { result: orders, countOrders } } = useQuery({
         queryKey: ['orders', page],
         queryFn: async () => {
             const res = await getOrders(user?.uid, page)
@@ -23,10 +24,16 @@ const MyOrder = () => {
         },
         initialData: { orders: [], countOrders: 0 }
     });
-    const foods = [];
-    orders?.map(order => foods.push( ...order.foods))
-    console.log(foods, orders);
-    const totalPages = Math.ceil(Number(foods?.length) / 10);
+
+    const convertSeconds = (seconds) => {
+        const orderDate = new Date(seconds);
+        const formattedDate = `${orderDate.getDate()}/${orderDate.getMonth() + 1}/${orderDate.getFullYear()}`;
+        return formattedDate
+    }
+    // const foods = [];
+    // orders?.map(order => foods.push(...order.foods))
+    console.log(orders);
+    const totalPages = Math.ceil(countOrders / 5);
     const pages = [... new Array(totalPages).fill(0)];
     console.log(page, pages, pages.length);
     return (
@@ -35,12 +42,12 @@ const MyOrder = () => {
                 <div className="md:max-w-screen-md lg:max-w-screen-2xl mx-auto flex flex-col gap-10 justify-start w-full after:h-[500px] after:content-[''] after:absolute after:w-full after:top-0 after:left-0 after:bg-gradient-to-r after:from-[#09161d] after:to-[#09161d46]">
                     <img src="/public/images/breadcumb-left-vec.svg" alt="bg-icon" className="w-[200px] absolute left-0 bottom-0 z-20" />
                     <h2 className="primaryHeading text-6xl text-start z-10">
-                        My added foods
+                        My ordered foods
                     </h2>
                     <div className="flex gap-2 items-center z-20">
                         <a href="/">
                             <p className="text-lg text-white font-cormorant flex gap-2 items-center z-20">Home <AiOutlineDoubleRight /></p></a>
-                        <span className="font-cormorant text-primary text-lg">My added foods</span>
+                        <span className="font-cormorant text-primary text-lg">My ordered foods</span>
                     </div>
                     <img src="/images/breadcumb-left-vec.svg" alt="bg-icon" className="w-[200px] absolute right-0 bottom-0 z-20" />
                 </div>
@@ -94,7 +101,7 @@ const MyOrder = () => {
                                 {/* Table */}
                                 <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                                     <TableHead labels={labels}></TableHead>
-                                    <TableBody orders={orders} countOrders={countOrders} refetch={refetch} isFetching={isFetching}></TableBody>
+                                    <TableBody orders={orders} convertSeconds={convertSeconds} countOrders={countOrders} refetch={refetch} isFetching={isFetching}></TableBody>
                                 </table>
                                 {/* End Table */}
                                 {/* Footer */}
@@ -102,7 +109,8 @@ const MyOrder = () => {
                                     <div>
                                         <p className="text-sm text-gray-600 dark:text-gray-400">
                                             <span className="font-semibold text-gray-800 dark:text-gray-200">
-                                                {foods?.length}
+                                                {isFetching? <div className='w-[80vw] mx-auto flex justify-center items-center'><LoadingSpinner></LoadingSpinner></div>:
+                                                countOrders}
                                             </span>{" "}
                                             results
                                         </p>
@@ -130,10 +138,10 @@ const MyOrder = () => {
                                                 </svg>
                                                 Prev
                                             </button>
-                                            {pages?.map((page, index) => {
+                                            {pages?.map((item, index) => {
                                                 return <button key={index}
                                                     type="button"
-                                                    className={`py-2 px-3 text-sm font-medium rounded-lg border border-gray-200 text-text shadow-sm hover:bg-gray-50 ${page == index ? 'bg-bg' : ''}`}
+                                                    className={`py-2 px-3 text-sm font-medium rounded-lg border border-gray-200 text-text shadow-sm hover:bg-gray-50 ${page == index ? 'bg-primary text-white hover:bg-primary' : ''}`}
                                                     onClick={() => setPage(index)}
                                                 >
                                                     {index + 1}

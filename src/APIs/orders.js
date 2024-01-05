@@ -10,3 +10,9 @@ export const getOrders = async (id, page) => {
     const data = await axiosSecure.get(`/orders/get?id=${id}&page=${page}`);
     return data
 }
+
+export const deleteOrder = async (id) => {
+    const data = await axiosSecure.delete(`/orders/delete?id=${id}`);
+    return data
+}
+
