@@ -13,7 +13,7 @@ import Profile from "../Pages/User/Profile";
 import FoodDetail from "../Pages/FoodDetail";
 import Order from "../Pages/Order";
 import PrivateRoute from "./PrivateRoute";
-import MyOrder from "../Pages/MyOrder";
+import MyOrder from "../Pages/User/MyOrder";
 
 const Routes = createBrowserRouter([
     {

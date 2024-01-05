@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import HeroInnerPages from '../Components/Hero/HeroInnerPages';
+import HeroInnerPages from '../../Components/Hero/HeroInnerPages';
 import { Link } from 'react-router-dom';
-import TableHead from '../Components/Table/OrdersTable/TableHead';
-import TableBody from '../Components/Table/OrdersTable/TableBody';
-import { getOrders } from '../APIs/orders';
+import TableHead from '../../Components/Table/OrdersTable/TableHead';
+import TableBody from '../../Components/Table/OrdersTable/TableBody';
+import { getOrders } from '../../APIs/orders';
 import { useQuery } from '@tanstack/react-query';
 import { AiOutlineDoubleRight } from 'react-icons/ai';
-import { useAuth } from '../Hooks/useAuth';
-import LoadingSpinner from '../Components/Shared/LoadingSpinner';
+import { useAuth } from '../../Hooks/useAuth';
+import LoadingSpinner from '../../Components/Shared/LoadingSpinner';
 
 const MyOrder = () => {
     const { user } = useAuth();

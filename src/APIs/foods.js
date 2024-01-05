@@ -21,3 +21,9 @@ export const searchFoods = async (keyword, page) => {
     const data = await axiosSecure.get(`/search?keyword=${keyword}&page=${page}`);
     return data
 }
+
+export const getAddedFoods = async (email, page) => {
+    console.log(page);
+    const data = await axiosSecure.get(`/added-foods?email=${email}&page=${page}`);
+    return data
+}
