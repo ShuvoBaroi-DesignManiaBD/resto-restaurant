@@ -10,9 +10,11 @@ import TableHead from "../../Components/Table/AddedFoods/TableHead";
 import TableBody from "../../Components/Table/AddedFoods/TableBody";
 
 
+
 const MyAddedFoods = () => {
   const { user } = useAuth();
   const [page, setPage] = useState(0);
+  // const [open, setOpen] = useState(null);
   const labels = ['Thumbnail', 'Name', 'Category', 'Country', 'Quantity', 'Price($)', 'Actions']
 
   const { isFetching, refetch, data: { result: foods, foodsCount } } = useQuery({
@@ -26,36 +28,20 @@ const MyAddedFoods = () => {
     initialData: { foods: [], foodsCount: 0 }
   });
 
+
   const convertSeconds = (seconds) => {
     const orderDate = new Date(seconds);
     const formattedDate = `${orderDate.getDate()}/${orderDate.getMonth() + 1}/${orderDate.getFullYear()}`;
     return formattedDate
   }
-  // const foods = [];
-  // orders?.map(order => foods.push(...order.foods))
+
   console.log(foods);
-  const totalPages = Math.ceil(foodsCount / 5);
+  const totalPages = Math.ceil(foodsCount / 2);
   const pages = [... new Array(totalPages).fill(0)];
   console.log(page, pages, pages.length);
   return (
     <>
-      <div className="bg-[url(https://i.ibb.co/3fNMsff/inner-pages-hero.webp)] relative w-full h-[500px] bg-cover primaryHeading text-white flex justify-start items-center text-start">
-        <div className="md:max-w-screen-md lg:max-w-screen-2xl mx-auto flex flex-col gap-10 justify-start w-full after:h-[500px] after:content-[''] after:absolute after:w-full after:top-0 after:left-0 after:bg-gradient-to-r after:from-[#09161d] after:to-[#09161d46]">
-          <img src="/public/images/breadcumb-left-vec.svg" alt="bg-icon" className="w-[200px] absolute left-0 bottom-0 z-20" />
-          <h2 className="primaryHeading text-6xl text-start z-10">
-            My ordered foods
-          </h2>
-          <div className="flex gap-2 items-center z-20">
-            <a href="/">
-              <p className="text-lg text-white font-cormorant flex gap-2 items-center z-20">Home <AiOutlineDoubleRight /></p></a>
-            <span className="font-cormorant text-primary text-lg">My ordered foods</span>
-          </div>
-          <img src="/images/breadcumb-left-vec.svg" alt="bg-icon" className="w-[200px] absolute right-0 bottom-0 z-20" />
-        </div>
-      </div>
-      <HeroInnerPages className='bg-white pb-0'>
-        All foods
-      </HeroInnerPages>
+      <HeroInnerPages pageTitle={"My Added Foods"}></HeroInnerPages>
       <div className="container sm:px-6 lg:px-8 lg:py-14 mx-auto">
         {/* Card */}
         <div className="flex flex-col justify-between">
@@ -65,7 +51,7 @@ const MyAddedFoods = () => {
                 
                 <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                   <TableHead labels={labels}></TableHead>
-                  <TableBody foods={foods} convertSeconds={convertSeconds} foodsCount={foodsCount} refetch={refetch} isFetching={isFetching}></TableBody>
+                  <TableBody foodsData={foods} convertSeconds={convertSeconds} foodsCount={foodsCount} refetch={refetch} isFetching={isFetching} varient="gradient" ></TableBody>
                 </table>
                 {/* End Table */}
                 {/* Footer */}

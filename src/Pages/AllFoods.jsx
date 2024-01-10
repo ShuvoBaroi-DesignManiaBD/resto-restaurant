@@ -4,6 +4,7 @@ import { useState } from "react";
 import { getAllFoods, searchFoods } from "../APIs/foods";
 import { useQuery } from "@tanstack/react-query";
 import FoodCard from "../Components/Cards/foodCard";
+import InnerPageBreadCumb from "../Components/Breadcumbs/InnerPageBreadCumb";
 
 const AllFoods = () => {
     const [page, setPage] = useState(0);
@@ -22,7 +23,7 @@ const AllFoods = () => {
     });
 
     // Pagination 
-    const totalPages = Math.ceil(foodsCount / 2);
+    const totalPages = Math.ceil(foodsCount / 8);
     const pages = [... new Array(totalPages).fill(0)];
     console.log(page, pages, pages.length);
     console.log(foods);
@@ -254,15 +255,15 @@ const AllFoods = () => {
                 </div>
                 {/* End Hero */}
             </div>
-            <HeroInnerPages className='bg-white pb-0'>
+            <InnerPageBreadCumb className='bg-white pb-0'>
                 All foods
-            </HeroInnerPages>
+            </InnerPageBreadCumb>
             <section className='container mx-auto pt-10 lg:pt-[20px] pb-20 text-center'>
                 {/* <h2 className='primaryHeading'>Foods</h2> */}
                 <div className='gap-10 grid md:grid-cols-2 lg:grid-cols-4 px-4 lg:px-0 py-10'>
                     {foods.length !== 0 ? (
                         isFetching ? (
-                            <Spinner color="blue" className="h-8 w-8 col-span-4 mx-auto" />
+                            <Spinner color="amber" className="h-12 w-12 my-32 col-span-4 mx-auto" />
                         ) : (
                             foods.map((food) => (
                                 <FoodCard

@@ -5,13 +5,13 @@ const Footer = () => {
         <footer className="flex flex-col justify-between items-center bg-cover bg-center footerBg text-white">
             <div className="footer-top container py-20">
                 <div className="">
-                    <div className="container grid grid-cols-3 justify-content-between align-items-center gy-5">
-                        <div className="">
-                            <div className="footer-widget one space-y-4">
+                    <div className="container grid gap-5 grid-cols-1 md:justify-center md:grid-cols-2 lg:grid-cols-3 justify-content-between align-items-center gy-5">
+                        <div className="col-span-1 order-2 md:order-2 lg:order-1 text-center md:text-left">
+                            <div className="footer-widget one space-y-4 px-10 md:px-0">
                                 <div className="widget-title">
                                     <h3 className="secondaryHeading">Our Facilities</h3>
                                 </div>
-                                <div className="menu-container flex gap-20">
+                                <div className="menu-container flex gap-5 justify-between md:justify-start lg:gap-20">
                                     <ul className="text font-normal text-offWhite space-y-4">
                                         <li>
                                             <a href="/menu1">Indian Menu</a>
@@ -47,7 +47,7 @@ const Footer = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="flex flex-col items-center justify-center w-[330px] h-[320px] p-8 border rounded-full border-solid border-[#ffffff26]">
+                        <div className="order-1 lg:order-2 md:col-span-2 lg:col-span-1 mx-auto lg:mx-0 flex flex-col items-center justify-center w-[330px] h-[320px] p-8 border rounded-full border-solid border-[#ffffff26]">
                             <div className="footer-widgetfooter-widget social-area">
                                 <div className="footer-logo flex flex-col gap-4 justify-center items-center text-center">
                                     <img src="/images/header1-logo.svg" alt="" />
@@ -82,8 +82,8 @@ const Footer = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="">
-                            <div className="footer-widget space-y-4">
+                        <div className="order-3 text-left">
+                            <div className="footer-widget space-y-4 text-center md:text-left">
                                 <div className="widget-title">
                                     <h3 className='secondaryHeading'>Address Info</h3>
                                 </div>
@@ -124,16 +124,16 @@ const Footer = () => {
             </div>
             <div className="footer-btm w-full">
                 <div className="container mx-auto">
-                    <div className="flex justify-between mx-auto border-t-[1px] border-[#ffffff26] py-4">
+                    <div className="flex flex-col md:flex-row justify-center md:justify-between mx-auto border-t-[1px] border-[#ffffff26] py-4">
                         <div className="">
                             <div className="copyright-area text-[12px]">
                                 <p className='text-center'>
-                                    @Copyright by{/* */} <a href="/#">Egenslab</a>-2023, All Right
+                                    @Copyright by{/* */} <a href="/#">Shuvo Baroi</a>- {new Date().getFullYear()}, All Right
                                     Reserved.
                                 </p>
                             </div>
                         </div>
-                        <div className="flex">
+                        <div className="flex justify-center">
                             <div className="privacy-policy">
                                 <p className='text-[12px] text-center'>
                                     <a href="/#">Privacy &amp; Policy</a> {/* */}|{" "}

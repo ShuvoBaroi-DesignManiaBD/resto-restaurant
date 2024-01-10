@@ -18,7 +18,7 @@ console.log(stringWithSpaces); // Output: 'this is a test string'
 
     return (
             <div className="flex flex-col items-stretch justify-between border-1 hover:shadow-xl rounded-lg w-full max-w-sm bg-white border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700">
-                <a className="cursor-pointer" onClick={() => navigate(`/foods/${foodData._id}`, { state: foodData })}>
+                <a className="cursor-pointer" onClick={() => navigate(`${(foodData.name).toLowerCase().replace(/\s+/g, '-')}`, { state: foodData._id })}>
                     <img
                         className="w-full p-8 bg-gray-100 cover rounded-t-xl h-[200px] md:h-[300px]"
                         src={foodData?.image}
@@ -36,7 +36,7 @@ console.log(stringWithSpaces); // Output: 'this is a test string'
                         <span className="text-2xl font-bold text-gray-900 dark:text-white">
                             ${foodData?.price}
                         </span>
-                        <button className="text-primary font-bold px-3 text-base py-1 flex items-center gap-2" onClick={() => navigate(`${(foodData.name).toLowerCase().replace(/\s+/g, '-')}`, { state: foodData._id })}>View details <BsArrowRight size="20" /></button>
+                        <button className="text-primary font-bold px-3 text-base py-1 flex items-center gap-2" onClick={() => navigate(`/foods/${(foodData.name).toLowerCase().replace(/\s+/g, '-')}`, { state: foodData._id })}>View details <BsArrowRight size="20" /></button>
                         {/* <button className="text-primary font-bold px-3 text-base py-1 flex items-center gap-2" onClick={() => navigate(`${(foodData.name).toLowerCase()}`, { state: foodData._id })}>View details <BsArrowRight size="20" /></button> */}
                     </div>
                     <div className="flex gap-5 ">

@@ -93,6 +93,7 @@ const FoodDetails = () => {
                         <div className="flex gap-3 mb-5">
                             <p className="text font-semibold font-cormorant text-textColor">Category:  <span className="text-sm font-light text-headingColor rounded-sm">{food?.category}</span></p>
                             <p className="text font-semibold font-cormorant text-textColor">In stock:  <span className="text-sm font-light text-headingColor rounded-sm">{food?.quantity}</span></p>
+                            <p className="text font-semibold font-cormorant text-textColor">Seller:  <span className="text-sm capitalize font-light text-headingColor rounded-sm">{food?.ownerName}</span></p>
                         </div>
                         <div className="flex items-stretch justify-center gap-4 40px mb-3">
                             <input type="number" step={0}
@@ -100,7 +101,7 @@ const FoodDetails = () => {
                                 min={1} inputMode="numeric" onChange={(e) => calculateTotal(e.target.value)}
                                 className="text-base text-center py-1.5 font-medium ring-1 ring-blue-gray-100 rounded-sm" />
                             <button disabled={(food?.quantity < 1) ? true : false} className={`disabled:bg-[#c09542a3] disabled:border-[#c0964259] disabled:cursor-not-allowed
-                            enabled:bg-primary 
+                            enabled:bg-primary text-white
                             primaryBtn py-1.5 w-full md:w-auto flex items-center gap-2`} onClick={() => addItem()} >Order this food <MdAddShoppingCart /></button>
                         </div>
                         {

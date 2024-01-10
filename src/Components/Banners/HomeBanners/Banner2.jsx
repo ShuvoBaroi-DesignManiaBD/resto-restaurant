@@ -1,5 +1,5 @@
 import './Banner.css'
-const Banner1 = () => {
+const Banner2 = () => {
     return (
         <div className='w-full h-full flex justify-between items-center'>
             <div className="banner-left-img relative z-30">
@@ -54,4 +54,4 @@ const Banner1 = () => {
     );
 };
 
-export default Banner1;
+export default Banner2;

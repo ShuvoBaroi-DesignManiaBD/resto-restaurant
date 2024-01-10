@@ -45,7 +45,7 @@ const UserDropdown = () => {
       </button>
       {open &&
         <div
-          className="absolute top-12 right-0 transition-[opacity,margin] duration min-w-[12rem] bg-white shadow-md rounded-lg p-2 mt-2 dark:bg-gray-800 dark:border dark:border-gray-700"
+          className="absolute z-[99] top-12 right-0 transition-[opacity,margin] duration min-w-[12rem] bg-white shadow-md rounded-lg p-2 mt-2 dark:bg-gray-800 dark:border dark:border-gray-700"
         >
           <span
             className="flex justify-center border-b items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 focus:outline-none focus:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:bg-gray-700"
@@ -55,15 +55,15 @@ const UserDropdown = () => {
           {user?.displayName}
         </span>
           </span>
-          <Link
+          {/* <Link
             className="flex items-center gap-x-2.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:bg-gray-700"
             to="/user/profile"
           >
             <CgProfile  size="18" /> My Profile
-          </Link>
+          </Link> */}
           <Link
             className="flex items-center gap-x-2.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:bg-gray-700"
-            to="user/add-food"
+            to="/user/add-food"
           >
             <BiPlusCircle size="20"/> Add new food
           </Link>

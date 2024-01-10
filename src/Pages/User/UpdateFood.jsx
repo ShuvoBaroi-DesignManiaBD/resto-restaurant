@@ -1,13 +1,15 @@
 
 import HeroInnerPages from "../../Components/Hero/HeroInnerPages";
 import { useAuth } from "../../Hooks/useAuth";
-import { addFood } from "../../APIs/foods";
+import { updateFood } from "../../APIs/foods";
 import toast from "react-hot-toast";
-import InnerPageBreadCumb from "../../Components/Breadcumbs/InnerPageBreadCumb";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const AddFood = () => {
-  const {user} = useAuth();
-  console.log(user);
+const UpdateFood = ({ foodData, id, setOpen, refetch }) => {
+  const location = useLocation()
+  console.log(foodData, id);
+  const navigate = useNavigate();
+  const { user } = useAuth();
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -15,37 +17,40 @@ const AddFood = () => {
     const name = form.foodName.value;
     const image = form.image.value;
     const category = form.foodCategory.value;
-    const quantity = form.quantity.value; 
+    const quantity = form.quantity.value;
     const price = form.price.value;
     const ownerName = form.ownerName.value;
     const ownerEmail = form.ownerEmail.value;
     const country = form.country.value;
     const description = form.description.value;
-    const orderCount = 0;
 
-    const data = {ownerId, name, image, category, quantity, price, ownerName, ownerEmail, country, description, orderCount};
+    const data = { ownerId, name, image, category, quantity, price, ownerName, ownerEmail, country, description };
     console.log(data);
+    toast.success('food updated successfully!')
 
-    addFood(data)
-    .then(food => {
-      toast.success('food added successfully!')
-      form.reset();
-    })
-    .catch(error => console.log(error))
+
+    updateFood(id, data)
+      .then(() => {
+        setOpen(null) && toast.success('food updated successfully!')
+        refetch()
+        // navigate('/user/added-foods')
+        // form.reset();
+      })
+      .catch(error => toast.error(`${error}`));
   }
-  
-  
+
+
   return (
     <>
-      <InnerPageBreadCumb>
+      {/* <HeroInnerPages>
         Add food
-      </InnerPageBreadCumb>
+      </HeroInnerPages> */}
       <section className="bg-white">
-        <div className="container py-8 px-4 mx-auto lg:py-16 lg:px-6 ">
+        <div className="container mx-auto">
           <section className="bg-white dark:bg-gray-900">
             <div className="py-8 px-4 mx-auto max-w-5xl lg:py-16">
               <h2 className="mb-4 primaryHeading text-center font-bold text-gray-900 dark:text-white">
-                Add a new food item
+                Update <span className="text-primary primaryHeading">{foodData?.name}</span>
               </h2>
               <form onSubmit={handleSubmit}>
                 <div className="grid gap-4 sm:grid-cols-6 sm:gap-6">
@@ -63,11 +68,12 @@ const AddFood = () => {
                       id="name"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                       placeholder="Type food name"
+                      defaultValue={foodData?.name}
                       required
                     />
 
                   </div>
-                  
+
                   {/* Food Image */}
                   <div className="col-span-6 md:col-span-3">
                     <label
@@ -81,6 +87,7 @@ const AddFood = () => {
                       name="image"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                       placeholder="insert the image URL"
+                      defaultValue={foodData?.image}
                       required
                     />
 
@@ -99,6 +106,7 @@ const AddFood = () => {
                       name="foodCategory"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                       placeholder="Type food name"
+                      defaultValue={foodData?.category}
                       required
                     />
 
@@ -118,6 +126,7 @@ const AddFood = () => {
                       id="quantity"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                       placeholder="quantity"
+                      defaultValue={foodData?.quantity}
                       required
                     />
                   </div>
@@ -136,6 +145,7 @@ const AddFood = () => {
                       id="price"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                       placeholder="$2999"
+                      defaultValue={foodData?.price}
                       required
                     />
                   </div>
@@ -193,6 +203,7 @@ const AddFood = () => {
                       name="country"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                       placeholder="Your food origin"
+                      defaultValue={foodData?.country}
                       required
                     />
 
@@ -212,6 +223,7 @@ const AddFood = () => {
                       rows={8}
                       className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                       placeholder="Your description here"
+                      defaultValue={foodData?.description}
                       required
                     />
                   </div>
@@ -221,7 +233,7 @@ const AddFood = () => {
                   type="submit"
                   className="primaryBtn mt-5"
                 >
-                  Add item
+                  Update Food
                 </button>
               </form>
             </div>
@@ -233,4 +245,4 @@ const AddFood = () => {
   );
 };
 
-export default AddFood;
+export default UpdateFood;

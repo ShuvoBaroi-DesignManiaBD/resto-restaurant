@@ -10,9 +10,20 @@ export const getFood = async (id) => {
     return data
 }
 
+export const updateFood = async (id, food) => {
+    const data = await axiosSecure.put(`/food/update?id=${id}`, food);
+    return data
+}
+
 export const getAllFoods = async (page) => {
     console.log(page);
     const data = await axiosSecure.get(`/all-foods?page=${page}`);
+    return data
+}
+
+export const getTopSellingFoods = async () => {
+    const data = await axiosSecure.get(`/top-selling-foods`);
+    console.log(data);
     return data
 }
 
