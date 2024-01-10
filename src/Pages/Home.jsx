@@ -9,6 +9,7 @@ import { useQuery } from '@tanstack/react-query';
 import { getTopSellingFoods } from '../APIs/foods';
 import { Spinner } from '@material-tailwind/react';
 import SubTitle from './Shared/SubTitle';
+import SiteMeta from '../Components/Shared/SiteMeta';
 
 const Home = () => {
     const { isFetching, data } = useQuery({
@@ -25,6 +26,7 @@ const Home = () => {
     console.log(data);
     return (
         <>
+        <SiteMeta tagLine="A restaurant of delicious foods"></SiteMeta>
             {/* Hero Area */}
             <div className="">
                 <div className="banner-vector hidden absolute lg:flex w-full justify-between">

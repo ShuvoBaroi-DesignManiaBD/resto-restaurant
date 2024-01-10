@@ -5,6 +5,7 @@ import { getAllFoods, searchFoods } from "../APIs/foods";
 import { useQuery } from "@tanstack/react-query";
 import FoodCard from "../Components/Cards/foodCard";
 import InnerPageBreadCumb from "../Components/Breadcumbs/InnerPageBreadCumb";
+import SiteMeta from "../Components/Shared/SiteMeta";
 
 const AllFoods = () => {
     const [page, setPage] = useState(0);
@@ -46,6 +47,7 @@ const AllFoods = () => {
 
     return (
         <>
+        <SiteMeta tagLine="Foods"></SiteMeta>
             <div className="bg-blue-gray-50">
                 {/* Hero */}
                 <div className="relative overflow-hidden">

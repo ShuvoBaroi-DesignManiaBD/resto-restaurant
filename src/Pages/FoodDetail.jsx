@@ -12,6 +12,7 @@ import { useState } from "react";
 import { getFood } from "../APIs/foods";
 import { useQuery } from "@tanstack/react-query";
 import { Spinner } from "@material-tailwind/react";
+import SiteMeta from "../Components/Shared/SiteMeta";
 
 const FoodDetails = () => {
     const [cartQuantity, setCartQuantity] = useState(1)
@@ -62,6 +63,7 @@ const FoodDetails = () => {
     }
     return (
         <>
+        <SiteMeta tagLine={path.replace(/-/g, ' ')}></SiteMeta>
             <div className="bg-[url(https://i.ibb.co/3fNMsff/inner-pages-hero.webp)] relative w-full h-[500px] bg-cover primaryHeading text-white flex justify-start items-center text-start">
                 <div className="md:max-w-screen-md lg:max-w-screen-2xl mx-auto flex flex-col gap-5 justify-start w-full after:h-[500px] after:content-[''] after:absolute after:w-full after:top-0 after:left-0 after:bg-gradient-to-r after:from-[#09161d] after:to-[#09161d46]">
                     <img src="/public/images/breadcumb-left-vec.svg" alt="bg-icon" className="w-[200px] absolute left-0 bottom-0 z-20" />
