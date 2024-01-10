@@ -6,3 +6,8 @@ export const getCartItems = () => {
     const items = JSON.parse(localStorage.getItem("cart"))
     return items;
 }
+
+export const getCartItem = () => {
+    const items = JSON.parse(localStorage.getItem("cart"))
+    return items;
+}
