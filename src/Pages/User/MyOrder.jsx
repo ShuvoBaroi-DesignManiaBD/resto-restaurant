@@ -34,7 +34,7 @@ const MyOrder = () => {
     // const foods = [];
     // orders?.map(order => foods.push(...order.foods))
     console.log(orders);
-    const totalPages = Math.ceil(countOrders / 5);
+    const totalPages = Math.ceil(countOrders / 6);
     const pages = [... new Array(totalPages).fill(0)];
     console.log(page, pages, pages.length);
     return (

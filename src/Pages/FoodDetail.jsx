@@ -103,7 +103,7 @@ const FoodDetails = () => {
                                 max={food?.quantity} defaultValue={1}
                                 min={1} inputMode="numeric" onChange={(e) => calculateTotal(e.target.value)}
                                 className="text-base text-center py-1.5 font-medium ring-1 ring-blue-gray-100 rounded-sm" />
-                            <button disabled={(food?.quantity < 1) ? true : false} className={`disabled:bg-[#c09542a3] disabled:border-[#c0964259] disabled:cursor-not-allowed
+                            <button disabled={(food?.quantity < 1 || food?.ownerId === user?.uid) ? true : false} className={`disabled:bg-[#c09542a3] disabled:border-[#c0964259] disabled:cursor-not-allowed
                             enabled:bg-primary text-white
                             primaryBtn py-1.5 w-full md:w-auto flex items-center gap-2`} onClick={() => addItem()} >Order this food <MdAddShoppingCart /></button>
                         </div>

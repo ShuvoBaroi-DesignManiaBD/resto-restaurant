@@ -37,7 +37,7 @@ const MyAddedFoods = () => {
   }
 
   console.log(foods);
-  const totalPages = Math.ceil(foodsCount / 2);
+  const totalPages = Math.ceil(foodsCount / 6);
   const pages = [... new Array(totalPages).fill(0)];
   console.log(page, pages, pages.length);
   return (
