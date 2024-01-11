@@ -18,13 +18,13 @@ const Banner2 = () => {
                 <span className='textLg flex gap-3 text-primary text-center'>
                     <img
                         className="left-vec"
-                        src="/public/images/sub-title-vec.svg"
+                        src="./images/sub-title-vec.svg"
                         alt="sub-title-vec"
                     />
                     Welcome To Restho
                     <img
                         className="right-vec"
-                        src="/public/images/sub-title-vec.svg"
+                        src="./images/sub-title-vec.svg"
                         alt="sub-title-vec"
                     />
                 </span>

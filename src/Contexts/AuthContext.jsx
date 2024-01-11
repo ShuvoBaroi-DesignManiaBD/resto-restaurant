@@ -3,6 +3,9 @@ import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged,
 import { createContext, useEffect, useState } from "react";
 import { auth } from "../Configs/Firebase.config";
 import Swal from "sweetalert2";
+import axiosPublic from "../Hooks/useAxiosPublic";
+import { axiosSecure } from "../Hooks/useAxiosSecure";
+import { logOut } from "../APIs/utils";
 
 
 
@@ -15,15 +18,33 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
-            console.log(currentUser);
+            const userEmail = currentUser?.email || user?.email;
+            const userId = currentUser?.uid || user?.uid;
+            const userInfo = { email: userEmail , id: userId };
+            console.log(currentUser, userInfo);
             setUser(currentUser);
+            if (currentUser) {
+                // get token and store client
+                axiosSecure.post('jwt', userInfo)
+                    .then(res => {
+                        if (res.data.token) {
+                            localStorage.setItem('access-token', res.data.token);
+                        }
+                    })
+            }
+            else {
+                // TODO: remove token (if token stored in the client side: Local storage, caching, in memory)
+                // localStorage.removeItem('access-token');
+                logOut(userInfo)
+                .then(res => console.log(res.data))
+            }
             setLoading(false);
         });
 
         return () => {
             unSubscribe();
         }
-    }, []);
+    }, [user?.email]);
 
     const createUserWithEmail = (email, password) => {
         createUserWithEmailAndPassword(auth, email, password)

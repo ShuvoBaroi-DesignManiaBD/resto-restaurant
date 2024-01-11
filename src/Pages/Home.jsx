@@ -30,8 +30,8 @@ const Home = () => {
             {/* Hero Area */}
             <div className="">
                 <div className="banner-vector hidden absolute lg:flex w-full justify-between">
-                    <img className="vector-top w-[170px] z-10 opacity-30 top-[600px] right-[500px] absolute" src="/public/images/shape1.svg" alt="hero-bg-icon-top" />
-                    <img className="vector-btm w-[170px] z-10 opacity-30 absolute top-[150px] left-[500px]" src="/public/images/shape2.svg" alt="hero-bg-icon-bottom" />
+                    <img className="vector-top w-[170px] z-10 opacity-30 top-[600px] right-[500px] absolute" src="./images/shape1.svg" alt="hero-bg-icon-top" />
+                    <img className="vector-btm w-[170px] z-10 opacity-30 absolute top-[150px] left-[500px]" src="./images/shape2.svg" alt="hero-bg-icon-bottom" />
                 </div>
                 <div className="banner-section1 flex items-center">
                     <Swiper

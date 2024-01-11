@@ -1,7 +1,9 @@
-import axiosSecure from ".";
+import axiosPublic from "../Hooks/useAxiosPublic";
+import { axiosSecure } from "../Hooks/useAxiosSecure";
+
 
 export const addOrder = async (order) => {
-    const data = await axiosSecure.post(`/orders/add-new`, order);
+    const data = await axiosPublic.post(`/orders/add-new`, order);
     return data
 }
 
@@ -12,7 +14,7 @@ export const getOrders = async (id, page) => {
 }
 
 export const deleteOrder = async (id) => {
-    const data = await axiosSecure.delete(`/orders/delete?id=${id}`);
+    const data = await axiosPublic.delete(`/orders/delete?id=${id}`);
     return data
 }
 
