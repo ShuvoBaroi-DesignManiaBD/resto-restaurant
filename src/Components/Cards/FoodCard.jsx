@@ -26,8 +26,9 @@ console.log(stringWithSpaces); // Output: 'this is a test string'
                     />
                 </a>
                 <div className="p-5 pb-3 flex flex-col justify-start items-stretch gap-2">
-                    <div className="flex">
+                    <div className="flex justify-between">
                         <p className="text-sm font-medium px-2 py-1 bg-primaryLight dark:bg-gray-700 rounded-sm flex justify-start gap-2 items-center text-start"><MdFastfood className="text-primary" />{foodData?.category}</p>
+                        <p className="text-sm font-medium px-2 rounded-sm flex justify-start gap-2 items-center text-start">Stock: {foodData?.quantity}</p>
                     </div>
                     <h3 className="text font-bold text-start dark:text-white" onClick={() => navigate(`/foods/${foodData._id}`, { state: foodData })}>
                         {foodData?.name}

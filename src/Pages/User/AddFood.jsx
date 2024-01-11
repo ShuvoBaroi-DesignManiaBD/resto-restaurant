@@ -4,6 +4,7 @@ import { useAuth } from "../../Hooks/useAuth";
 import { addFood } from "../../APIs/foods";
 import toast from "react-hot-toast";
 import InnerPageBreadCumb from "../../Components/Breadcumbs/InnerPageBreadCumb";
+import SiteMeta from "../../Components/Shared/SiteMeta";
 
 const AddFood = () => {
   const {user} = useAuth();
@@ -37,6 +38,7 @@ const AddFood = () => {
   
   return (
     <>
+    <SiteMeta tagLine="Add new Food"></SiteMeta>
       <InnerPageBreadCumb>
         Add food
       </InnerPageBreadCumb>

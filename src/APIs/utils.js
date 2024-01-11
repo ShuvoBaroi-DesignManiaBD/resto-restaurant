@@ -1,5 +1,4 @@
 import axios from "axios";
-import axiosPublic from "../Hooks/useAxiosPublic";
 import { axiosSecure } from "../Hooks/useAxiosSecure";
 
 // JWT related API

@@ -8,6 +8,7 @@ import LoadingSpinner from "../../Components/Shared/LoadingSpinner";
 import { getAddedFoods } from "../../APIs/foods";
 import TableHead from "../../Components/Table/AddedFoods/TableHead";
 import TableBody from "../../Components/Table/AddedFoods/TableBody";
+import SiteMeta from "../../Components/Shared/SiteMeta";
 
 
 
@@ -41,6 +42,7 @@ const MyAddedFoods = () => {
   console.log(page, pages, pages.length);
   return (
     <>
+    <SiteMeta tagLine="My added foods"></SiteMeta>
       <HeroInnerPages pageTitle={"My Added Foods"}></HeroInnerPages>
       <div className="container sm:px-6 lg:px-8 lg:py-14 mx-auto">
         {/* Card */}

@@ -10,7 +10,10 @@ const UserRoute = ({children}) => {
     const navigate = useNavigate();
     const {pathname} = useLocation();
     if (loading) {
-        return <Spinner color="amber" className="h-8 w-8 col-span-4 mx-auto" />
+        return <div className="h-screen flex items-center justify-center">
+            <Spinner color="amber" className="h-12 w-12 my-32 col-span-4 mx-auto" />
+            </div>
+        
     }
     if (user) return (
         <>

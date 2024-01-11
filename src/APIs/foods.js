@@ -4,7 +4,7 @@ import { axiosSecure } from "../Hooks/useAxiosSecure";
 
 
 export const addFood = async (food) => {
-    const data = await axiosPublic.post(`/add-food`, food);
+    const data = await axiosSecure.post(`/add-food`, food);
     return data
 }
 
@@ -14,7 +14,7 @@ export const getFood = async (id) => {
 }
 
 export const updateFood = async (id, food) => {
-    const data = await axiosPublic.put(`/food/update?id=${id}`, food);
+    const data = await axiosSecure.put(`/food/update?id=${id}`, food);
     return data
 }
 
@@ -38,6 +38,6 @@ export const searchFoods = async (keyword, page) => {
 
 export const getAddedFoods = async (email, page) => {
     console.log(page);
-    const data = await axiosPublic.get(`/added-foods?email=${email}&page=${page}`);
+    const data = await axiosSecure.get(`/added-foods?email=${email}&page=${page}`);
     return data
 }

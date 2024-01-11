@@ -8,6 +8,7 @@ import { useQuery } from '@tanstack/react-query';
 import { AiOutlineDoubleRight } from 'react-icons/ai';
 import { useAuth } from '../../Hooks/useAuth';
 import LoadingSpinner from '../../Components/Shared/LoadingSpinner';
+import SiteMeta from '../../Components/Shared/SiteMeta';
 
 const MyOrder = () => {
     const { user } = useAuth();
@@ -38,6 +39,7 @@ const MyOrder = () => {
     console.log(page, pages, pages.length);
     return (
         <>
+        <SiteMeta tagLine="My orders"></SiteMeta>
             <HeroInnerPages pageTitle={"My orders"}></HeroInnerPages>
             <div className="container sm:px-6 lg:px-8 lg:py-14 mx-auto">
                 {/* Card */}

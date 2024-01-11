@@ -4,6 +4,7 @@ import { useAuth } from "../../Hooks/useAuth";
 import { updateFood } from "../../APIs/foods";
 import toast from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
+import SiteMeta from "../../Components/Shared/SiteMeta";
 
 const UpdateFood = ({ foodData, id, setOpen, refetch }) => {
   const location = useLocation()
@@ -45,6 +46,7 @@ const UpdateFood = ({ foodData, id, setOpen, refetch }) => {
       {/* <HeroInnerPages>
         Add food
       </HeroInnerPages> */}
+      <SiteMeta tagLine="Update Food"></SiteMeta>
       <section className="bg-white">
         <div className="container mx-auto">
           <section className="bg-white dark:bg-gray-900">

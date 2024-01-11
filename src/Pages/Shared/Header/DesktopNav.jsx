@@ -15,7 +15,7 @@ const DesktopNav = () => {
             <NavLink to="/foods" className={activeStatus}>
                 All food items
             </NavLink>
-            <NavLink to="/all-foods" className={activeStatus}>
+            <NavLink to="/blog" className={activeStatus}>
                 Blog
             </NavLink>
             {user ?
