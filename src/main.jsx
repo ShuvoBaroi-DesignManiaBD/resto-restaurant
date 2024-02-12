@@ -13,6 +13,7 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query'
 import { HelmetProvider } from 'react-helmet-async';
+import ScrollToTop from './Components/Shared/ScrollToTop/ScrollToTop';
 
 
 const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <RouterProvider router={Routes}>
         </RouterProvider>
         <Toaster />
+        <ScrollToTop></ScrollToTop>
       </AuthProvider>
     </QueryClientProvider>
     </HelmetProvider>
